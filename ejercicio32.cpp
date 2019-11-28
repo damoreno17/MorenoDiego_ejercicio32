@@ -15,7 +15,7 @@ int main() {
   int NT = 300;
   double c = sqrt(T / rho);
   double cl = c;
-  double radio = c * c / (cl * cl);
+  double r = c * c / (cl * cl);
   double k[Nx][3];
   double Ktot[Nx][NT];
   double pi = 3.14159;
@@ -36,11 +36,11 @@ int main() {
   for (int t = 1; t < NT; t++) {
     if (t == 1) {
       for (int ix = 1; ix < Nx - 1; ix++) {
-        k[ix][1] = k[ix][0] + 0.5 * radio * (k[ix + 1][0] + k[ix - 1][0] - 2.0 * k[ix][0]);
+        k[ix][1] = k[ix][0] + 0.5 * r * (k[ix + 1][0] + k[ix - 1][0] - 2.0 * k[ix][0]);
       }
     } else {
       for (int ix = 1; ix < Nx - 1; ix++) {
-        k[ix][2] = 2.0 * k[ix][1] - k[ix][0] + radio * (k[ix + 1][1] + k[ix - 1][1] - 2. * k[ix][1]);
+        k[ix][2] = 2.0 * k[ix][1] - k[ix][0] + r * (k[ix + 1][1] + k[ix - 1][1] - 2. * k[ix][1]);
       }
     }
     if ((t % 1 == 0) || (t == 1)){
